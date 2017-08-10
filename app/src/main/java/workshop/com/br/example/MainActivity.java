@@ -7,7 +7,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
+
+import workshop.com.br.example.api.ConversorApiException;
+import workshop.com.br.example.api.ConversorDistancia;
+import workshop.com.br.example.api.ConversorMassa;
+import workshop.com.br.example.api.ConversorMoeda;
+import workshop.com.br.example.api.IConversor;
+
 public class MainActivity extends AppCompatActivity {
+
+    private IConversor conversorDistancia;
+    private IConversor conversorMassa;
+    private IConversor conversorMoeda;
 
     private EditText milhasEditText;
     private EditText librasEditText;
@@ -42,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
         limparButton = (Button) findViewById(R.id.limparButton);
 
+        conversorDistancia = new ConversorDistancia();
+        conversorMassa = new ConversorMassa();
+        conversorMoeda = new ConversorMoeda();
+
     }
 
     public void onLimparButtonClick(View v){
@@ -50,20 +66,38 @@ public class MainActivity extends AppCompatActivity {
         dolarEditText.setText("0");
 
         quilometrosTextView.setText("0 Km");
-        quilosTextView.setText("0 Km");
-        realTextView.setText("R$0");
+        quilosTextView.setText("0 Kg");
+        realTextView.setText("R$ 0");
 
     }
 
     public void onMilhasButtonClick(View v){
+        try {
+            BigDecimal valorEmKm = conversorDistancia.converter(new BigDecimal(milhasEditText.getText().toString()));
+            quilometrosTextView.setText(valorEmKm.setScale(2, BigDecimal.ROUND_HALF_DOWN).toString() + " Km");
+        } catch (ConversorApiException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void onLibrasButtonClick(View v){
+        try {
+            BigDecimal valorEmQuilos = conversorMassa.converter(new BigDecimal(librasEditText.getText().toString()));
+            quilosTextView.setText(valorEmQuilos.setScale(2, BigDecimal.ROUND_HALF_DOWN).toString() + " Kg");
+        } catch (ConversorApiException e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void onDolarButtonClick(View v){
+        try {
+            BigDecimal valorEmReais = conversorMoeda.converter(new BigDecimal(dolarEditText.getText().toString()));
+            realTextView.setText("R$ " + valorEmReais.setScale(2, BigDecimal.ROUND_HALF_DOWN).toString());
+        } catch (ConversorApiException e) {
+            e.printStackTrace();
+        }
 
     }
 
