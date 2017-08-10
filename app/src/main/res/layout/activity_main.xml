@@ -10,8 +10,148 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="workshop.com.br.example.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Distância" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:text="Milhas: " />
+
+            <EditText
+                android:id="@+id/milhasEditText"
+                android:layout_width="120px"
+                android:layout_height="wrap_content"
+                android:text="0"/>
+
+            <Button
+                android:id="@+id/milhasButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Converter"/>
+
+            <TextView
+                android:id="@+id/quilometrosTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="0 Km" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000">
+        </View>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Massa" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:text="Libras: " />
+
+            <EditText
+                android:id="@+id/librasEditText"
+                android:layout_width="120px"
+                android:layout_height="wrap_content"
+                android:text="0"/>
+
+            <Button
+                android:id="@+id/librasButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Converter"/>
+
+            <TextView
+                android:id="@+id/quilosTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="0 Kg" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000">
+        </View>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Moeda" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:text="Dolar: " />
+
+            <EditText
+                android:id="@+id/dolarEditText"
+                android:layout_width="120px"
+                android:layout_height="wrap_content"
+                android:text="0"/>
+
+            <Button
+                android:id="@+id/dolarButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Converter"/>
+
+            <TextView
+                android:id="@+id/realTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="R$0" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="#000">
+        </View>
+
+        <Button
+            android:id="@+id/limparButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="limpar"/>
+
+    </LinearLayout>
+
 </RelativeLayout>
