@@ -16,6 +16,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/distanciaTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -36,13 +37,15 @@
                 android:id="@+id/milhasEditText"
                 android:layout_width="120px"
                 android:layout_height="wrap_content"
-                android:text="0"/>
+                android:text="0"
+                android:inputType="numberDecimal"/>
 
             <Button
                 android:id="@+id/milhasButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Converter"/>
+                android:text="Converter"
+                android:onClick="onMilhasButtonClick"/>
 
             <TextView
                 android:id="@+id/quilometrosTextView"
@@ -60,6 +63,7 @@
         </View>
 
         <TextView
+            android:id="@+id/massaTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -80,13 +84,15 @@
                 android:id="@+id/librasEditText"
                 android:layout_width="120px"
                 android:layout_height="wrap_content"
-                android:text="0"/>
+                android:text="0"
+                android:inputType="numberDecimal"/>
 
             <Button
                 android:id="@+id/librasButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Converter"/>
+                android:text="Converter"
+                android:onClick="onLibrasButtonClick"/>
 
             <TextView
                 android:id="@+id/quilosTextView"
@@ -103,6 +109,7 @@
             android:background="#000">
         </View>
         <TextView
+            android:id="@+id/moedaTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -123,13 +130,15 @@
                 android:id="@+id/dolarEditText"
                 android:layout_width="120px"
                 android:layout_height="wrap_content"
-                android:text="0"/>
+                android:text="0"
+                android:inputType="numberDecimal"/>
 
             <Button
                 android:id="@+id/dolarButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Converter"/>
+                android:text="Converter"
+                android:onClick="onDolarButtonClick"/>
 
             <TextView
                 android:id="@+id/realTextView"
@@ -150,7 +159,8 @@
             android:id="@+id/limparButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="limpar"/>
+            android:text="limpar"
+            android:onClick="onLimparButtonClick"/>
 
     </LinearLayout>
 
