@@ -12,9 +12,15 @@ public class ConversorMassa implements IConversor {
 
     @Override
     public BigDecimal converter(BigDecimal libras) throws ConversorApiException {
+        if (libras == null) {
+            throw new ConversorApiException("Informe a quantidade de libras a ser convertido!");
+        }
+        if (libras.compareTo(BigDecimal.ZERO) < 0) {
+            throw new ConversorApiException("Libras não pode ser negativo!");
+        }
         if (libras != null) {
             return libras.multiply(FATOR_QUILOGRAMA);
         }
-        throw new ConversorApiException("Informe a quantidade de libras a ser convertido!");
+        return BigDecimal.ZERO;
     }
 }

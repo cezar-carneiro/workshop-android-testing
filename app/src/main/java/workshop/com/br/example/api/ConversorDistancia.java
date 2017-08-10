@@ -12,9 +12,15 @@ public class ConversorDistancia implements IConversor {
 
     @Override
     public BigDecimal converter(BigDecimal milhas) throws ConversorApiException {
+        if (milhas == null) {
+            throw new ConversorApiException("Informe a distancia em milhas a ser convertido!");
+        }
+        if (milhas.compareTo(BigDecimal.ZERO) < 0) {
+            throw new ConversorApiException("Milhas não pode ser negativo!");
+        }
         if (milhas != null) {
             return milhas.multiply(FATOR_KM);
         }
-        throw new ConversorApiException("Informe a distancia em milhas a ser convertido!");
+        return BigDecimal.ZERO;
     }
 }

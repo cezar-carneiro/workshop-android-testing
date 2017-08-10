@@ -12,9 +12,15 @@ public class ConversorMoeda implements IConversor {
 
     @Override
     public BigDecimal converter(BigDecimal dolar) throws ConversorApiException {
+        if (dolar == null) {
+            throw new ConversorApiException("Informe o dólar a ser convertido!");
+        }
+        if (dolar.compareTo(BigDecimal.ZERO) < 0) {
+            throw new ConversorApiException("Dolar não pode ser negativo!");
+        }
         if (dolar != null) {
             return dolar.multiply(COTACAO_DOLLAR);
         }
-        throw new ConversorApiException("Informe o dólar a ser convertido!");
+        return BigDecimal.ZERO;
     }
 }
