@@ -37,7 +37,6 @@
                 android:id="@+id/milhasEditText"
                 android:layout_width="120px"
                 android:layout_height="wrap_content"
-                android:text="0"
                 android:inputType="numberDecimal"/>
 
             <Button
@@ -52,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:text="0 Km" />
+                android:text="0.00 Km" />
 
         </LinearLayout>
 
@@ -84,7 +83,6 @@
                 android:id="@+id/librasEditText"
                 android:layout_width="120px"
                 android:layout_height="wrap_content"
-                android:text="0"
                 android:inputType="numberDecimal"/>
 
             <Button
@@ -99,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:text="0 Kg" />
+                android:text="0.00 Kg" />
 
         </LinearLayout>
 
@@ -130,7 +128,6 @@
                 android:id="@+id/dolarEditText"
                 android:layout_width="120px"
                 android:layout_height="wrap_content"
-                android:text="0"
                 android:inputType="numberDecimal"/>
 
             <Button
@@ -145,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:text="R$0" />
+                android:text="R$ 0.00" />
 
         </LinearLayout>
 

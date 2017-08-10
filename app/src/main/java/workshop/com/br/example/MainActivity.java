@@ -1,7 +1,9 @@
 package workshop.com.br.example;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,22 +63,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onLimparButtonClick(View v){
-        milhasEditText.setText("0");
-        librasEditText.setText("0");
-        dolarEditText.setText("0");
+        milhasEditText.setText("");
+        librasEditText.setText("");
+        dolarEditText.setText("");
 
-        quilometrosTextView.setText("0 Km");
-        quilosTextView.setText("0 Kg");
-        realTextView.setText("R$ 0");
-
+        quilometrosTextView.setText("0.00 Km");
+        quilosTextView.setText("0.00 Kg");
+        realTextView.setText("R$ 0.00");
     }
 
     public void onMilhasButtonClick(View v){
         try {
-            BigDecimal valorEmKm = conversorDistancia.converter(new BigDecimal(milhasEditText.getText().toString()));
+            BigDecimal bg = new BigDecimal(milhasEditText.getText().toString());
+            BigDecimal valorEmKm = conversorDistancia.converter(bg);
             quilometrosTextView.setText(valorEmKm.setScale(2, BigDecimal.ROUND_HALF_DOWN).toString() + " Km");
+        } catch (NumberFormatException e){
+            Log.e(null, null, e);
+            showAlertDialog();
         } catch (ConversorApiException e) {
-            e.printStackTrace();
+            Log.e(null, null, e);
+            showAlertDialog();
         }
 
     }
@@ -85,8 +91,12 @@ public class MainActivity extends AppCompatActivity {
         try {
             BigDecimal valorEmQuilos = conversorMassa.converter(new BigDecimal(librasEditText.getText().toString()));
             quilosTextView.setText(valorEmQuilos.setScale(2, BigDecimal.ROUND_HALF_DOWN).toString() + " Kg");
+        } catch (NumberFormatException e){
+            Log.e(null, null, e);
+            showAlertDialog();
         } catch (ConversorApiException e) {
-            e.printStackTrace();
+            Log.e(null, null, e);
+            showAlertDialog();
         }
 
     }
@@ -95,10 +105,21 @@ public class MainActivity extends AppCompatActivity {
         try {
             BigDecimal valorEmReais = conversorMoeda.converter(new BigDecimal(dolarEditText.getText().toString()));
             realTextView.setText("R$ " + valorEmReais.setScale(2, BigDecimal.ROUND_HALF_DOWN).toString());
+        } catch (NumberFormatException e){
+            Log.e(null, null, e);
+            showAlertDialog();
         } catch (ConversorApiException e) {
-            e.printStackTrace();
+            Log.e(null, null, e);
+            showAlertDialog();
         }
 
+    }
+
+    public void showAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Erro");
+        builder.setMessage("Valor invalido");
+        builder.create().show();
     }
 
 }
