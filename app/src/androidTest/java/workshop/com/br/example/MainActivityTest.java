@@ -1,6 +1,7 @@
 package workshop.com.br.example;
 
 import android.app.Activity;
+import android.os.SystemClock;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
@@ -65,6 +66,14 @@ public class MainActivityTest {
     }
 
     @Test
+    public void garantirTituloTemperaturaCorreto() {
+        View temperaturaTitleTextView = activity.findViewById(R.id.temperaturaTitleTextView);
+        assertThat(temperaturaTitleTextView, instanceOf(TextView.class));
+        assertThat(temperaturaTitleTextView, notNullValue());
+        onView(withId(R.id.temperaturaTitleTextView)).check(matches(withText("Temperatura")));
+    }
+
+    @Test
     public void garantirDistanciaSoAceitaNumeroPositivo() {
         onView(withId(R.id.milhasEditText)).perform(clearText(), typeText("a"), closeSoftKeyboard()).check(matches(withText("")));
         onView(withId(R.id.milhasEditText)).perform(clearText(), typeText("-"), closeSoftKeyboard()).check(matches(withText("")));
@@ -95,6 +104,15 @@ public class MainActivityTest {
     }
 
     @Test
+    public void garantirTemperaturaSoAceitaNumeros() {
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText("a"), closeSoftKeyboard()).check(matches(withText("")));
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText("-1"), closeSoftKeyboard()).check(matches(withText("-1")));
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText("2"), closeSoftKeyboard()).check(matches(withText("2")));
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText(".5"), closeSoftKeyboard()).check(matches(withText(".5")));
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText("0.5"), closeSoftKeyboard()).check(matches(withText("0.5")));
+    }
+
+    @Test
     public void verificarEntradaVaziaParaMilhas(){
         onView(withId(R.id.milhasEditText)).perform(clearText());
         onView(withId(R.id.milhasButton)).perform(click());
@@ -112,6 +130,13 @@ public class MainActivityTest {
     public void verificarEntradaVaziaParaDolares(){
         onView(withId(R.id.dolarEditText)).perform(clearText());
         onView(withId(R.id.dolarButton)).perform(click());
+        onView(withText("Valor invalido")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void verificarEntradaVaziaParaCelsius(){
+        onView(withId(R.id.celsiusEditText)).perform(clearText());
+        onView(withId(R.id.celsiusButton)).perform(click());
         onView(withText("Valor invalido")).check(matches(isDisplayed()));
     }
 
@@ -153,5 +178,31 @@ public class MainActivityTest {
         onView(withId(R.id.quilosTextView)).check(matches(withText("4.54 Kg")));
     }
 
+    @Test
+    public void verificarConversaoDeCeusius(){
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText("0"));
+        onView(withId(R.id.celsiusButton)).perform(click());
+        onView(withId(R.id.fahrenheitTextView)).check(matches(withText("32.00 ºF")));
+
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText("1"));
+        onView(withId(R.id.celsiusButton)).perform(click());
+        onView(withId(R.id.fahrenheitTextView)).check(matches(withText("33.80 ºF")));
+
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText(".5"));
+        onView(withId(R.id.celsiusButton)).perform(click());
+        onView(withId(R.id.fahrenheitTextView)).check(matches(withText("32.90 ºF")));
+
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText("-2"));
+        onView(withId(R.id.celsiusButton)).perform(click());
+        onView(withId(R.id.fahrenheitTextView)).check(matches(withText("28.40 ºF")));
+
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText("-2.6"));
+        onView(withId(R.id.celsiusButton)).perform(click());
+        onView(withId(R.id.fahrenheitTextView)).check(matches(withText("27.32 ºF")));
+
+        onView(withId(R.id.celsiusEditText)).perform(clearText(), typeText("1.27"));
+        onView(withId(R.id.celsiusButton)).perform(click());
+        onView(withId(R.id.fahrenheitTextView)).check(matches(withText("34.29 ºF")));
+    }
 
 }
